@@ -1,0 +1,49 @@
+<style type="text/css">
+<!--
+body {
+	margin-top: 0px;
+	margin-bottom: 0px	;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #006666;
+}
+ul {font-size:14px;}
+ul li {font-size:12px;list-style:square;}
+a:link { color: #0EA5E5; text-decoration:none}
+a:visited {color: #0EA5E5; text-decoration:none}
+a:hover {color: #006666; text-decoration:underline}
+a:active {color: #0EA5E5;}
+.STYLE2 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #006666;
+}
+.STYLE3 {color: #0EA5E5}
+-->
+</style>
+
+<a href='/bookcatch/categorylist_siteid={{site.id}}/'>{{site.siteName}}</a>>><a href='/bookcatch/categorylist_siteid={{site.id}}/'>{{top.title}}</a>>>{{sub.title}}
+{% for book in pagecase.object_list %}
+	<div><img src="{{book.bigImgUrl}}" /a></div><br>
+	<div>{{book.title|safe}}</div><br>
+	<div><span>id:{{book.id}}</span>&nbsp;&nbsp;<span>作者：{{book.author}}</span>&nbsp;&nbsp;<span>出版社：{{book.publisher}}</span>&nbsp;&nbsp;</div><br>
+	<div><span>出版时间：{{book.date}}</span>&nbsp;&nbsp;<span>总页数：{{book.totalPage}}</span>&nbsp;&nbsp;</div><br>
+	<div><span>版次：{{book.edition}}</span>&nbsp;&nbsp;<span>开本：{{book.format}}</span>&nbsp;&nbsp;</div><br>
+	<div><span>ISBN：{{book.isbn}}</span>&nbsp;&nbsp;<span>包装：{{book.pack}}</span>&nbsp;&nbsp;</div><br>
+	<div><span>原价：￥{{book.oprice}}</span>&nbsp;&nbsp;<span>当当价：￥{{book.price}}</span>&nbsp;&nbsp;</div><br>
+	<div><span>货存状态：{% ifequal book.state 1%} 有货 <a href="{{book.buyUrl}}">购买</a></span></div><br> {{book.state}}{% else %} 无货 </span>&nbsp;&nbsp;<span><a href="{{book.buyUrl}}">查看详情</a></span></div><br> {% endifequal %}
+	<div>内容简介：{{book.caption|safe}}</div>
+{%endfor%}
+
+<span class="step-links">
+			{% if pagecase.has_previous %}
+				<a href="?page={{pagecase.previous_page_number}}">上一页</a>
+			{% endif %}
+			<span class="current">
+				第{{pagecase.number}}页,共{{pagecase.paginator.num_pages}}页
+			</span>
+			
+			{% if pagecase.has_next %}
+				<a href="?page={{pagecase.next_page_number }}">下一页</a>
+			{%endif%}
+		</span>

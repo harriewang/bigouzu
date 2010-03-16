@@ -1,0 +1,81 @@
+body {
+margin:0;
+	font-family: "宋体";
+	font-size: 13px;
+	color: #336600;
+}
+p {
+font: 18px/15px "微软雅黑","Trebuchet MS","Lucida Grande",Verdana,sans-serif;
+}
+#top_nav {
+background-image:url(../img/nav_bg.gif);
+height:90px;
+line-height:90px;
+}
+#logo {
+display:block;
+position:absolute;
+margin-left:20px;
+float:left;
+z-index:1;
+}
+form {
+position:absolute;
+left:50%;
+margin-top:20px;
+margin-left:-240px;
+}
+#search_box {
+background:url(../img/search_box2.jpg) no-repeat scroll left top transparent;
+width:400px;
+height:35px;
+float:left;
+}
+#id_query {
+color:#666666;
+font-size:13px;
+width:380px;
+height:20px;
+background:none;
+border:none;
+padding-top:8px;
+padding-left:10px;
+}
+#id_submit {
+border:none;
+width:66px;
+height:36px;
+background: url(../img/submit.jpg) no-repeat scroll left top transparent;
+margin-left:15px;
+cursor:pointer;
+color:#4A4D4A;
+}
+#result_text {
+margin-left:300px;
+}
+table,tr,td {
+	align:center
+	height:20px;
+	font-size:12px;
+	color:#4A4D4A;
+	border:1px dashed #cccccc; 
+	border-collapse:collapse;
+}
+img {
+	border:none;
+}
+.price {
+	color:#990000;
+}
+
+ul {font-size:14px;}
+ul li {font-size:12px;list-style:square;}
+a:link { color: #4A4D4A; text-decoration:none}
+a:visited {color: #4A4D4A; text-decoration:none}
+a:hover {color: #990000; text-decoration:underline}
+a:active {color: #990000;}
+.STYLE2 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #006666;
+}

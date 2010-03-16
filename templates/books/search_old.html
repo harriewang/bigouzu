@@ -1,0 +1,83 @@
+<style type="text/css">
+<!--
+body {
+	margin-top: 0px;
+	margin-bottom: 0px	;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #006666;
+}
+table,tr,td {
+	align:center
+	height:20px;
+	font-size:12px;
+	color:4A4D4A;
+	border:1px dashed #cccccc; 
+	border-collapse:collapse;
+}
+img {
+	border:none;
+}
+.price {
+	color:#990000;
+}
+
+ul {font-size:14px;}
+ul li {font-size:12px;list-style:square;}
+a:link { color: #0EA5E5; text-decoration:none}
+a:visited {color: #0EA5E5; text-decoration:none}
+a:hover {color: #006666; text-decoration:underline}
+a:active {color: #0EA5E5;}
+.STYLE2 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #006666;
+}
+.STYLE3 {color: #0EA5E5}
+-->
+</style>
+
+<div>
+	<form action="/search/books/" method="POST">
+		<input type="text" name="query"/>
+		<input type="submit" value="搜索图书">
+	</form>
+{% if books %}
+	<p>您搜索的是：<strong>{{ query }}</strong> 搜索到 <strong>{{ search_meta.total_found }}</strong> 结果.</p>
+{% endif %}
+<hr/>
+<table align="center">
+	<tr height="25px" align="center" >
+		<td>书名</td>
+		<td>作者</td>
+		<td>商家</td>
+		<td>优惠信息</td>
+		<td>原价</td>
+		<td class="price">价格</td>
+		<td>购买</td>
+	</tr>
+{% for s in books %}
+	{% for site in allsites %}
+		{% ifequal site.id s.siteId %}
+	<tr height="25px" align="center">
+		<td>{{ s.title }}</td>
+		<td width="80px">{{s.author}}</td>
+		<td width="120px">
+			<a href="{{site.siteUrl}}"><img src="{{site.siteLogo}}"/></a><br>
+			<a href="{{site.siteUrl}}">{{site.siteName}}</a>
+		</td>
+		<td width="120px">{{site.youhui}}</td>
+		<td width="120px">原价：￥{{s.oprice}}</td>
+		<td width="120px" class="price">￥{{s.price}}<br>（{{site.siteName}}价）</td>
+		{%if s.state %}
+		<td width="120px"><a href="{{s.buyUrl}}"><img src="/media/img/goumai.png"/></a></td>
+		{%endif%}
+		{%if not s.state%}
+		<td width="120px"><a href="{{s.buyUrl}}"><img src="/media/img/quehuo.png"/></a></td>
+		{%endif%}
+	</tr>
+		{% endifequal %}
+	{% endfor %}
+{% endfor %}
+</table>
+</div>

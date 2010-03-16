@@ -1,0 +1,94 @@
+<style type="text/css">
+<!--
+body {
+	margin-top: 0px;
+	margin-bottom: 0px	;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #006666;
+}
+table,tr,td {
+	align:center
+	height:20px;
+	font-size:12px;
+	color:#4A4D4A;
+	border:1px dashed #cccccc; 
+	border-collapse:collapse;
+}
+img {
+	border:none;
+}
+.price {
+	color:#990000;
+}
+
+ul {font-size:14px;}
+ul li {font-size:12px;list-style:square;}
+a:link { color: #4A4D4A; text-decoration:none}
+a:visited {color: #4A4D4A; text-decoration:none}
+a:hover {color: #990000; text-decoration:underline}
+a:active {color: #990000;}
+.STYLE2 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #006666;
+}
+.STYLE3 {color: #0EA5E5}
+-->
+</style>
+<script type="text/javascript" src="/media/js/jquery-latest.js"></script>
+<script type="text/javascript" src="/media/js/jquery.tablesorter.js"></script>
+<script type="text/javascript">
+$(document).ready(function() 
+    { 
+        $("#searchresult").tablesorter(); 
+    } 
+); 
+</script>
+<div>
+	<form action="/newsearch/books/" method="GET">
+		<input type="text" name="query"/>
+		<input type="submit" value="搜索图书">
+	</form>
+{% if query %}	
+{% if books %}
+	<p>您搜索的是：<strong>{{ query }}</strong> 搜索到 <strong>{{ num }}</strong> 结果.&nbsp;&nbsp;<a href="/newsearch/books/">返回搜索首页</a></p>
+{% else %}
+	<p>没有搜索到您想要的书籍</p>
+{% endif %}
+{% endif %}
+<hr/>
+<table align="center" id="searchresult">
+	<thead>
+	<tr height="25px" align="center" >
+		<th>书名</th>
+		<th>作者</th>
+		<th>商家</th>
+		<th>优惠信息</th>
+		<th>原价</th>
+		<th class="price">价格</th>
+		<th>购买</th>
+	</tr>
+	</thead>
+	<tbody>
+{% for book in books %}
+	<tr height="25px" align="center">
+		<td>{{ book.title }}</td>
+		<td width="80px">{{book.author}}</td>
+		<td width="120px">
+			<a href="{{book.siteUrl}}"><img src="{{book.siteLogo}}"/></a><br>
+			<a href="{{book.siteUrl}}">{{book.siteName}}</a>
+		</td>
+		<td width="120px">{{book.youhui}}</td>
+		<td width="120px">原价：{{book.oprice}}</td>
+		<td width="120px" class="price">{{book.price}}<br>（{{book.siteName}}价）</td>
+		{%ifequal book.state "1" %}
+		<td width="120px"><a href="{{book.buyUrl}}"><img src="/media/img/goumai.png"/></a><br><a href="{{book.deliverInfo}}">查看配送详情</a></td>
+		{% else %}
+		<td width="120px"><a href="{{book.buyUrl}}"><img src="/media/img/quehuo.png"/></a></td>
+		{%endifequal%}
+	</tr>
+{% endfor %}
+	</tbody>
+</table>
+</div>

@@ -1,0 +1,115 @@
+<style type="text/css">
+<!--
+body {
+	margin-top: 0px;
+	margin-bottom: 0px	;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #006666;
+}
+table,tr,td {
+	textalign:center
+	height:20px;
+	font-size:12px;
+	color:#4A4D4A;
+	border:1px dashed #cccccc; 
+	border-collapse:collapse;
+	
+}
+div {
+	margin-left:360px;
+	margin-top:5px;
+}
+h2 {
+	textalign:center;
+}
+ul {font-size:14px;}
+ul li {font-size:12px;list-style:square;}
+a:link { color: #0EA5E5; text-decoration:none}
+a:visited {color: #0EA5E5; text-decoration:none}
+a:hover {color: #006666; text-decoration:underline}
+a:active {color: #0EA5E5;}
+.STYLE2 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #006666;
+}
+.STYLE3 {color: #0EA5E5}
+-->
+</style>
+<h2>{{site.siteName}}的信息</h2>
+<table align=center width="60%">
+	<tr height="40px">
+		<td colspan="2" align="center"><strong>网站信息</strong>&nbsp;|<a href="/bookcatch/editsite_id={{site.id}}/">修改网站信息</a></td>
+	</tr>
+	<tr height="30px">
+		<td width="150px" align="center">网站名称</td>
+		<td>{{site.siteName}}</td>	
+	</tr>
+	<tr height="30px">
+		<td align="center">抓取名称</td>
+		<td>{{site.catchName}}</td>
+	</tr>
+	<tr height="30px">
+		<td align="center">网站地址</td>
+		<td>{{site.siteUrl}}</td>
+	</tr >
+	<tr height="30px">
+		<td align="center">起始地址</td>
+		<td>{{site.startUrl}}</td>
+	</tr>
+	<tr height="30px">
+		<td align="center">网站Logo</td>
+		<td><img src="{{site.siteLogo}}" /></td>
+	</tr>
+	<tr height="30px">
+		<td align="center">优惠信息</td>
+		<td>{{site.youhui}}</td>
+	</tr>
+	<tr height="30px">
+		<td align="center">送货信息</td>
+		<td>{{site.deliverInfo}}</td>
+	</tr>
+</table>
+
+<table align=center width="60%">
+	<tr height="40px">
+		<td colspan="2" align="center"><strong>日志信息</strong></td>
+	</tr>
+	<tr height="30px">
+		<td width="150px" align="center">网站ID：</td>
+		<td>{{log.siteId}}</td>	
+	</tr>
+	<tr height="30px">
+		<td align="center">断点分类ID：</td>
+		<td>{{log.breakSubId}}</td>
+	</tr>
+	<tr height="30px">
+		<td align="center">断点分类名称：</td>
+		<td>{{log.breakSubTitle}}</td>
+	</tr >
+	<tr height="30px">
+		<td align="center">断点分页ID：</td>
+		<td>{{log.breakPageId}}</td>
+	</tr>
+	<tr height="30px">
+		<td align="center">断点书籍序号：</td>
+		<td>{{log.breakItemId}}</td>
+	</tr>
+	<tr height="30px">
+		<td align="center">日志记录时间：</td>
+		<td>{{log.breakTime}}</td>
+	</tr>
+	<tr height="30px">
+		<td align="center">错误信息：</td>
+		<td>{{log.errorInfo}}</td>
+	</tr>
+	<tr height="30px">
+		<td align="center">当前事件：</td>
+		<td>{{log.currentEvent}}</td>
+	</tr>
+</table>
+<div>
+	<input name='抓取分类' value='抓取分类' type=button onclick="window.open('/bookcatch/{{site.catchName}}_categorycatch_siteid={{site.id}}/')"><input name='查看分类' value='查看分类' type=button onclick="window.open('/bookcatch/categorylist_siteid={{site.id}}/')">
+	<input name='抓取所有书籍' value='抓取所有书籍' type=button onclick="window.open('/bookcatch/{{site.catchName}}_detailcatch_siteid={{site.id}}/')"><input name='删除' value='删除' type=button onclick="window.open('/bookcatch/delete_siteid={{site.id}}/')">
+</div>

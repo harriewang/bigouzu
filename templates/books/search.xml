@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Results>
+	<!--查询的关键词-->
+	<Query>{{query}}</Query> 
+	<!--返回结果的数量-->
+	<Num>{{num}}</Num>
+	<!--查询的时间-->
+	<Time></Time>
+	{%for book in books %}
+		{% for site in allsites %}
+			{% ifequal site.id book.siteId %}
+			<Detail>
+				<book_title>{{book.title}}</book_title>
+				<book_author>{{book.author}}</book_author>
+				<book_imgUrl>{{book.imgUrl}}</book_imgUrl>
+				<site_name>{{site.siteName}}</site_name>
+				<site_url>{{site.siteUrl}}</site_url>
+				<site_logo>{{site.siteLogo}}</site_logo>
+				<youhui>{{site.youhui}}</youhui>
+    				<old_price>￥：{{book.oprice}}</old_price>
+    				<price>￥：{{book.price}}</price>
+    				<buy_url>{{book.buyUrl}}</buy_url>
+    				<book_state>{{book.state}}</book_state>
+    				<deliver_info>{{site.deliverInfo}}</deliver_info>
+    			</Detail>
+    			{% endifequal %}
+    		{% endfor %}
+    	{% endfor %}
+</Results>

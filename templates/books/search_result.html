@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>在比一比搜索{{query}}的结果--网上购物？先来比一比吧！</title>
+	<link rel="stylesheet" href="/media/css/result.css" media="screen" type="text/css" />
+	</head>
+
+	<body>
+	<div id="top_nav">
+		<div id="logo"><a href="/"><img src="/media/img/logo.png" /></a></div>
+		<div>
+		<form action="/search/" method="GET">
+			<div id="search_box"><input id="id_query" type="text" name="query"/></div>
+			<input id="id_submit" type="submit" value="">
+		</form>
+		</div>
+	</div>
+	<div id="result_text">
+		{% if query %}	
+			{% if books %}
+		<p>您搜索的是：<strong>{{ query }}</strong>，搜索到 <strong>{{ num }}</strong> 个结果.&nbsp;&nbsp;返回<a href="/">首页</a></p>
+{% else %}
+		<p>没有搜索到您想要的书籍</p>
+{% endif %}
+{% endif %}
+	</div>
+<table align="center">
+	<tr height="25px" align="center" >
+		<td>书名</td>
+		<td>封面</td>
+		<td>商家</td>
+		<td>优惠信息</td>
+		<td>原价</td>
+		<td class="price">价格</td>
+		<td>购买</td>
+	</tr>
+{% for book in books %}
+	<tr height="25px" align="center">
+		<td width="200px">{{ book.title }}</td>
+		<td width="80px"><img src="{{book.imgUrl}}" /></td>
+		<td width="120px">
+			<a href="{{book.siteUrl}}"><img src="{{book.siteLogo}}"/></a><br>
+			<a href="{{book.siteUrl}}">{{book.siteName}}</a>
+		</td>
+		<td width="120px">{{book.youhui}}</td>
+		<td width="120px">原价：{{book.oprice}}</td>
+		<td width="120px" class="price">{{book.price}}<br>（{{book.siteName}}价）</td>
+		{%ifequal book.state "1" %}
+		<td width="120px"><a href="{{book.buyUrl}}"><img src="/media/img/goumai.png"/></a><br><a href="{{book.deliverInfo}}">查看配送详情</a></td>
+		{% else %}
+		<td width="120px"><a href="{{book.buyUrl}}"><img src="/media/img/quehuo.png"/></a></td>
+		{%endifequal%}
+	</tr>
+{% endfor %}
+</table>
+
+
+	</body>
+</html>

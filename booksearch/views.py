@@ -2,8 +2,9 @@
 import elementtree.ElementTree as ET
 import urllib2
 from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from models import SearchLog
+from django.db.models import Count
 
 #--构造字典的函数--#
 def makedict(**kwargs):
@@ -12,6 +13,8 @@ def makedict(**kwargs):
 def Index(request,query):
 	
 	"""***比购族首页显示及搜索***"""
+	hotwords = SearchLog.objects.values('keyword').annotate(keyword_count=Count('keyword')).order_by('-keyword_count')[:30]
+	
 	try:
 		query=request.GET['query']				#获取搜索的关键词
 		if not query:
@@ -26,7 +29,7 @@ def Index(request,query):
 		
 		#--将用户提交的搜索关键词传递给API部分，并通过解析XML得到搜索结果--#
 		
-		url='http://byb.zozs.com/search/api/books/q=' + query	#得到真实的url
+		url='http://bigouzu.com/search/api/books/q=' + query	#得到真实的url
 		url=url.encode('utf-8')										#对url进行转码
 		url=urllib2.unquote(url)										#对url进行反引用
 		data=urllib2.urlopen(url)										#得到API的所有数据
@@ -49,4 +52,13 @@ def Index(request,query):
 		return render_to_response('books/search_result.html',context)
 	except:
 		#context={'books':list()}
-		return render_to_response('index.html')
+		return render_to_response('index.html',{'hotwords':hotwords})
+
+def keywordSuggest(request,input):
+	"""***比购族显示搜索关键词建议***"""
+	b=SearchLog.search.query(input)
+	import simplejson
+	return HttpResponse(simplejson.dumps(input))#simplejson.dumps(b)
+    #books=b.order_by('price')
+    #return HttpResponse('{"results": []}')#return HttpResponse('{"results": [{"id": "2", "value": "Altman, Alisha", "info":"Buckinghamshire"}, {"id": "3", "value": "Archibald, Janna", "info":"Cambridgeshire"}, {"id": "4", "value": "Auman, Cody", "info":"Cheshire"}]}')
+

@@ -1,60 +1,149 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>在比一比搜索{{query}}的结果--网上购物？先来比一比吧！</title>
-	<link rel="stylesheet" href="/media/css/result.css" media="screen" type="text/css" />
-	</head>
-
-	<body>
-	<div id="top_nav">
-		<div id="logo"><a href="/"><img src="/media/img/logo.png" /></a></div>
-		<div>
-		<form action="/search/" method="GET">
-			<div id="search_box"><input id="id_query" type="text" name="query"/></div>
-			<input id="id_submit" type="submit" value="">
-		</form>
-		</div>
-	</div>
-	<div id="result_text">
-		{% if query %}	
-			{% if books %}
-		<p>您搜索的是：<strong>{{ query }}</strong>，搜索到 <strong>{{ num }}</strong> 个结果.&nbsp;&nbsp;返回<a href="/">首页</a></p>
-{% else %}
-		<p>没有搜索到您想要的书籍</p>
-{% endif %}
-{% endif %}
-	</div>
-<table align="center">
-	<tr height="25px" align="center" >
-		<td>书名</td>
-		<td>封面</td>
-		<td>商家</td>
-		<td>优惠信息</td>
-		<td>原价</td>
-		<td class="price">价格</td>
-		<td>购买</td>
-	</tr>
-{% for book in books %}
-	<tr height="25px" align="center">
-		<td width="200px">{{ book.title }}</td>
-		<td width="80px"><img src="{{book.imgUrl}}" /></td>
-		<td width="120px">
-			<a href="{{book.siteUrl}}"><img src="{{book.siteLogo}}"/></a><br>
-			<a href="{{book.siteUrl}}">{{book.siteName}}</a>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>在比一比搜索{{query}}的结果--网上购物？先来比一比吧！</title>
+<link rel="stylesheet" href="/media/css/result.css" media="screen" type="text/css" />
+</head>
+<body>
+<div id="header">
+	<form name="search" action="/search/" method="GET">
+	<table>
+		<tbody>
+		<tr>
+		<td>
+			<a title="比购族 首页" href="/" id="logo">
+			<img src="/media/img/srch_logo.png" alt="比购族 首页">
+			</a>
 		</td>
-		<td width="120px">{{book.youhui}}</td>
-		<td width="120px">原价：{{book.oprice}}</td>
-		<td width="120px" class="price">{{book.price}}<br>（{{book.siteName}}价）</td>
-		{%ifequal book.state "1" %}
-		<td width="120px"><a href="{{book.buyUrl}}"><img src="/media/img/goumai.png"/></a><br><a href="{{book.deliverInfo}}">查看配送详情</a></td>
-		{% else %}
-		<td width="120px"><a href="{{book.buyUrl}}"><img src="/media/img/quehuo.png"/></a></td>
-		{%endifequal%}
-	</tr>
-{% endfor %}
-</table>
+		<td>
+		<table cellspacing="0" id="search-input">
+		<tbody>
+		<tr>
+			<td nowrap="" class="srchBoxCont">
+				<input title="搜索商品" value="{{ query }}" size="41" name="query" maxlength="2048" class="srch_box">
+			</td>
+			<td nowrap="">
+				<div class="srchButtonRightShadow">
+					<div class="srchButtonBorder">
+						<input type="image" src="/media/img/submit.jpg">
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="search_advanced" colspan="2">
+				<a id="advsearch" href="#">高级</a>
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		</td>
+		</tr>
+		</tbody>
+	</table>
+	</form>
+</div>
+<div id="result-count">
+{% if query %}
+	{% if books %}
+	您搜索的是：<strong>{{ query }}</strong>，搜索到 <strong>{{ num }}</strong> 个结果.
+	{% else %}
+	没有搜索到您想要的商品
+	{% endif %}
+{% endif %}
+</div>
+<div class="col_left">
+	<div id="ms">
+		<ul>
+			<li>
+				<div>
+					<span class="mode-icon"></span>
+					<span class="mode-desc"><a href="###">所有商家</a></span>
+				</div>
+			</li>
+			<li class="current-mode">
+				<div>
+					<span class="mode-icon"></span>
+					<span class="mode-desc"><b>当当网</b></span>
+				</div>
+			</li><li class="current-mode">
+				<div>
+					<span class="mode-icon"></span>
+					<span class="mode-desc"><b>亚马逊卓越</b></span>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="content-cont">
+	<div class="ads_top">
+		<script type="text/javascript"><!--
+		google_ad_client = "pub-5839758067615533";
+		/* bigouzu top 728x90, created 7/26/10 */
+		google_ad_slot = "8070519440";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
+	<div id="view_sort"></div>
+	<div id="results">
+		<ol>
+			{% for book in books %}
+			<li class="result">
+				<div class="result-cont">
+					<p class="result-image"><img src="{{book.imgUrl}}" width=100 height=100 /></p>
+					<div class="result-price-seller">
+						<p class="result-price">
+						<span class="result-price-range">
+						{{book.price}}
+						</span>
+						</p>
+						<div class="result-seller">
+						<cite class="hidden">
+							<a href="{{book.siteUrl}}">{{book.siteName}}</a>
+							<a href="{{book.siteUrl}}"><img src="{{book.siteLogo}}"/></a>
+						</cite>
+						</div>
+						<div class="result-button">
+							{%ifequal book.state "1" %}
+							<a href="{{book.buyUrl}}"><img src="/media/img/goumai.png"/></a><br><a href="{{book.deliverInfo}}" target="_blank">查看配送详情</a></td>
+							{% else %}
+							<a href="{{book.buyUrl}}"><img src="/media/img/quehuo.png"/></a></td>
+							{%endifequal%}
+						</div>
+					</div>
+					<div class="result-title-description">
+						<h3 class="result-title"><a target="_blank" href="{{book.buyUrl}}"><b>{{ book.title }}</b></a></h3>
+						<p class="result-attributes"></p>
+						<p class="result-pop"></p>
+						<p class="result-desc">{{book.youhui}}<br/>原价：{{book.oprice}}</p>
+						<div class="result-rating"></div>
+					</div>
+				</div>
+			</li>
+			{% endfor %}
+		</ol>
+	</div>
+	<div class="ads_bot">
+		<script type="text/javascript"><!--
+		google_ad_client = "pub-5839758067615533";
+		/* bigouzu bottom728x90, created 7/26/10 */
+		google_ad_slot = "1405280049";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
+</div>
 
 
-	</body>
+</body>
 </html>

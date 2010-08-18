@@ -1,3 +1,4 @@
+@import url(/media/css/base.css);
 body, div, ul, ol, li, h1, h2, h3, form, p, th, td {
 margin:0;
 padding:0;
@@ -8,9 +9,10 @@ font-weight:normal;
 }
 body {
 line-height:131%;
-}
-body {
 font:82% Arial,Helvetica,sans-serif;
+background-color:#FFFFFF;
+margin:3px 8px 0;
+line-height:131%;
 }
 a {
 color:#1111CC;
@@ -85,15 +87,5 @@ font-size:139%;
 height:22px;
 padding:4px 10px 10px 6px;
 width:550px;
-}
-.bottom-links {
-padding:22px 0;
-text-align:center;
-}
-.bottom-links a, .footer-links a {
-margin:0 10px;
-}
-.fl:link, #footer a, .bottom-links a {
-color:#4272DB;
 }
 #advsearch{display:none;}

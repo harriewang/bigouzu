@@ -1,49 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>在比一比搜索{{query}}的结果--网上购物？先来比一比吧！</title>
+{% extends "base.html" %}
+{% block head-title %}搜索{{query}}的结果 - 比购族{% endblock %}
+{% block head-link %}
 <link rel="stylesheet" href="/media/css/result.css" media="screen" type="text/css" />
-</head>
-<body>
-<div id="header">
-	<form name="search" action="/search/" method="GET">
-	<table>
-		<tbody>
-		<tr>
-		<td>
-			<a title="比购族 首页" href="/" id="logo">
-			<img src="/media/img/srch_logo.png" alt="比购族 首页">
-			</a>
-		</td>
-		<td>
-		<table cellspacing="0" id="search-input">
-		<tbody>
-		<tr>
-			<td nowrap="" class="srchBoxCont">
-				<input title="搜索商品" value="{{ query }}" size="41" name="query" maxlength="2048" class="srch_box">
-			</td>
-			<td nowrap="">
-				<div class="srchButtonRightShadow">
-					<div class="srchButtonBorder">
-						<input type="image" src="/media/img/submit.jpg">
-					</div>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td class="search_advanced" colspan="2">
-				<a id="advsearch" href="#">高级</a>
-			</td>
-		</tr>
-		</tbody>
-		</table>
-		</td>
-		</tr>
-		</tbody>
-	</table>
-	</form>
-</div>
+{% endblock %}
+{% block main-cont %}
 <div id="result-count">
 {% if query %}
 	{% if books %}
@@ -56,24 +16,38 @@
 <div class="col_left">
 	<div id="ms">
 		<ul>
-			<li>
+			<li class="current-mode">
 				<div>
 					<span class="mode-icon"></span>
-					<span class="mode-desc"><a href="###">所有商家</a></span>
+					<span class="mode-desc">所有商家</span>
 				</div>
 			</li>
-			<li class="current-mode">
+			<li>
 				<div>
 					<span class="mode-icon"></span>
 					<span class="mode-desc"><b>当当网</b></span>
 				</div>
-			</li><li class="current-mode">
+			</li>
+			<li>
 				<div>
 					<span class="mode-icon"></span>
 					<span class="mode-desc"><b>亚马逊卓越</b></span>
 				</div>
 			</li>
 		</ul>
+	</div>
+	<div class="ads_left">
+		<script type="text/javascript"><!--
+		google_ad_client = "pub-5839758067615533";
+		/* bigouzu left col 125x125, created 7/29/10 */
+		google_ad_slot = "0223842384";
+		google_ad_width = 125;
+		google_ad_height = 125;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
 	</div>
 </div>
 <div class="content-cont">
@@ -90,7 +64,7 @@
 		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		</script>
 	</div>
-	<div id="view_sort"></div>
+	<div id="view_sort">&nbsp;</div>
 	<div id="results">
 		<ol>
 			{% for book in books %}
@@ -143,7 +117,4 @@
 		</script>
 	</div>
 </div>
-
-
-</body>
-</html>
+{% endblock %}

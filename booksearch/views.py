@@ -13,7 +13,7 @@ def makedict(**kwargs):
 def Index(request,query):
 	
 	"""***比购族首页显示及搜索***"""
-	hotwords = SearchLog.objects.values('keyword').annotate(keyword_count=Count('keyword')).order_by('-keyword_count')[:30]
+	hotwords = SearchLog.objects.values('keyword').annotate(keyword_count=Count('keyword')).order_by('-keyword_count')[:25]
 	
 	try:
 		query=request.GET['query']				#获取搜索的关键词

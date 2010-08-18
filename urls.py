@@ -5,6 +5,10 @@ from django.conf.urls.defaults import *
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+	(r'^taobao/$','taobao.views.index'),
+	(r'^yihaodian/$','yihaodian.views.index'),
+	(r'^dangdang/$','dangdang.views.index'),
+	(r'^joyo/$','joyo.views.index'),
 	(r'^bookcatch/addsites/$','books.views.addSite'),
 	(r'^bookcatch/editsite_id=(?P<id>\d+)/$','books.views.editSite'),
 	(r'^bookcatch/delete_siteid=(?P<id>\d+)/$','books.views.delete'),

@@ -1,0 +1,37 @@
+#topbar {
+float:left;
+height:22px;
+}
+#topbar, #topuser {
+font-size:13px;
+padding-top:1px !important;
+}
+#topuser {
+padding-bottom:7px !important;
+text-align:right;
+}
+.bbh {
+height:0;
+position:absolute;
+top:24px;
+width:100%;
+border-top:1px solid #C9D7F1;
+font-size:1px;
+}
+#topbar a{
+color:#1111CC !important;
+margin-right:0.5em;
+}
+#footer{
+	text-align:center;
+}
+.bottom-links {
+padding:22px 0;
+text-align:center;
+}
+.bottom-links a, .footer-links a {
+margin:0 10px;
+}
+.fl:link, #footer a, .bottom-links a {
+color:#4272DB;
+}

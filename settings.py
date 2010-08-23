@@ -11,6 +11,10 @@ TEMPLATE_DEBUG = DEBUG
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 PROJECT_PACKAGE = os.path.basename(PROJECT_ROOT)
 
+# Add the project folder to the PYTHONPATH, if a packages.pth is present, it'll
+# be included as well.
+site.addsitedir(PROJECT_ROOT, set())
+
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )

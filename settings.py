@@ -1,7 +1,15 @@
 # Django settings for byb project.
+# coding:utf-8
+import os
+import site
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+#Get current directory of project
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+PROJECT_PACKAGE = os.path.basename(PROJECT_ROOT)
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -27,6 +35,11 @@ TIME_ZONE = 'GMT-8'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'zh-cn'
 
+LANGUAGES = (
+    ('zh-cn',   u'中文'),
+    ('en',      u'English'),
+)
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -35,12 +48,12 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/var/www/virtualhost/byb/media/'
+MEDIA_ROOT = os.path.join(PROJECT_ROOT,'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -63,15 +76,25 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.doc.XViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfResponseMiddleware',
 )
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = '%s.urls' % PROJECT_PACKAGE
 
 TEMPLATE_DIRS = (
-	'/var/www/virtualhost/byb/templates/'
+	os.path.join(PROJECT_ROOT,'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = ( 
+    'django.core.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.request',
 )
 
 INSTALLED_APPS = (
@@ -81,11 +104,18 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'books',
     'booksearch',
+    'yihaodian',
+    'taobao',
+    'dangdang',
+    'joyo',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = ( 
-     'django.core.context_processors.auth', 
-)
 
 # Sphinx 0.9.9
 SPHINX_API_VERSION = 0x116
+
+# Finally load the local settings if there's any
+try:
+    from settings_local import *
+except ImportError:
+    pass

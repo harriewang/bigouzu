@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% block head-title %}搜索{{query}}的结果 - 比购族{% endblock %}
+{% block head-link %}
+<link rel="stylesheet" href="/media/css/result.css" media="screen" type="text/css" />
+{% endblock %}
+{% block main-cont %}
+<div id="result-count">
+{% if query %}
+	{% if taoitems %}
+	您搜索的是：<strong>{{ query }}</strong>，搜索到 <strong>{{ num }}</strong> 个结果.
+	{% else %}
+	没有搜索到您想要的商品
+	{% endif %}
+{% endif %}
+</div>
+<div class="col_left">
+	<div id="ms">
+		<ul>
+			<li class="current-mode">
+				<div>
+					<span class="mode-icon"></span>
+					<span class="mode-desc">所有商家</span>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span class="mode-icon"></span>
+					<span class="mode-desc"><b>淘宝网</b></span>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span class="mode-icon"></span>
+					<span class="mode-desc"><b>一号店</b></span>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span class="mode-icon"></span>
+					<span class="mode-desc"><b>当当网</b></span>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span class="mode-icon"></span>
+					<span class="mode-desc"><b>亚马逊卓越</b></span>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="ads_left">
+		<script type="text/javascript"><!--
+		google_ad_client = "pub-5839758067615533";
+		/* bigouzu left col 125x125, created 7/29/10 */
+		google_ad_slot = "0223842384";
+		google_ad_width = 125;
+		google_ad_height = 125;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
+</div>
+<div class="content-cont">
+	<div class="ads_top">
+		<script type="text/javascript"><!--
+		google_ad_client = "pub-5839758067615533";
+		/* bigouzu top 728x90, created 7/26/10 */
+		google_ad_slot = "8070519440";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
+	<div id="view_sort">&nbsp;</div>
+	<div id="results">
+		<ol>
+			{% for item in taoitems %}
+			<li class="result">
+				<div class="result-cont">
+					<p class="result-image"><img src="{{item.pic_url}}" width=100 height=100 /></p>
+					<div class="result-price-seller">
+						<p class="result-price">
+						<span class="result-price-range">
+						{{item.price}}
+						</span>
+						</p>
+						<div class="result-seller">
+						<cite class="hidden">
+							<a href="{{book.siteUrl}}">{{book.siteName}}</a>
+							<a href="{{book.siteUrl}}"><img src="{{book.siteLogo}}"/></a>
+						</cite>
+						</div>
+						<div class="result-button">
+							{%if item.price %}
+							<a href="http://item.taobao.com/auction/item_detail-0db2-{{item.iid}}.jhtml" target="_blank"><img src="/media/img/goumai.png"/></a><br><a href="http://item.taobao.com/auction/item_detail-0db2-{{item.iid}}.jhtml" target="_blank" style="display:none;">查看配送详情</a></td>
+							{% else %}
+							<a href="{{book.buyUrl}}"><img src="/media/img/quehuo.png"/></a></td>
+							{%endif%}
+						</div>
+					</div>
+					<div class="result-title-description">
+						<h3 class="result-title"><a target="_blank" href="http://item.taobao.com/auction/item_detail-0db2-{{item.iid}}.jhtml"><b>{{ item.title|safe }}</b></a></h3>
+						<p class="result-attributes"></p>
+						<p class="result-pop"></p>
+						<p class="result-desc">{{book.youhui}}<br/>原价：{{item.price}}</p>
+						<div class="result-rating"></div>
+					</div>
+				</div>
+			</li>
+			{% endfor %}
+			{% for book in books %}
+			<li class="result">
+				<div class="result-cont">
+					<p class="result-image"><img src="{{book.imgUrl}}" width=100 height=100 /></p>
+					<div class="result-price-seller">
+						<p class="result-price">
+						<span class="result-price-range">
+						{{book.price}}
+						</span>
+						</p>
+						<div class="result-seller">
+						<cite class="hidden">
+							<a href="{{book.siteUrl}}">{{book.siteName}}</a>
+							<a href="{{book.siteUrl}}"><img src="{{book.siteLogo}}"/></a>
+						</cite>
+						</div>
+						<div class="result-button">
+							{%ifequal book.state "1" %}
+							<a href="{{book.buyUrl}}"><img src="/media/img/goumai.png"/></a><br><a href="{{book.deliverInfo}}" target="_blank">查看配送详情</a></td>
+							{% else %}
+							<a href="{{book.buyUrl}}"><img src="/media/img/quehuo.png"/></a></td>
+							{%endifequal%}
+						</div>
+					</div>
+					<div class="result-title-description">
+						<h3 class="result-title"><a target="_blank" href="{{book.buyUrl}}"><b>{{ book.title }}</b></a></h3>
+						<p class="result-attributes"></p>
+						<p class="result-pop"></p>
+						<p class="result-desc">{{book.youhui}}<br/>原价：{{book.oprice}}</p>
+						<div class="result-rating"></div>
+					</div>
+				</div>
+			</li>
+			{% endfor %}
+		</ol>
+	</div>
+	<div class="ads_bot">
+		<script type="text/javascript"><!--
+		google_ad_client = "pub-5839758067615533";
+		/* bigouzu bottom728x90, created 7/26/10 */
+		google_ad_slot = "1405280049";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
+</div>
+{% endblock %}

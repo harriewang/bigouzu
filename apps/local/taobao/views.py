@@ -1,5 +1,5 @@
 #coding:utf-8
-from books.models import SiteInfo,BookDetail
+#from books.models import SiteInfo,BookDetail
 from django.shortcuts import render_to_response
 
 	

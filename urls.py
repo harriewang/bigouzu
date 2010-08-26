@@ -21,8 +21,10 @@ urlpatterns = patterns('',
 	(r'^bookcatch/bookdetail_siteid=(?P<siteId>\d+)&subid=(?P<id>\d+)','books.dangdang.bookList'),
 	(r'^bookcatch/amazon_categorycatch_siteid=(?P<id>\d+)/$','books.amazon.categoryCatch'),
 	(r'^bookcatch/amazon_detailcatch_siteid=(?P<id>\d+)/$','books.amazon.bookDetailCatch'),
+	(r'^search.html','search.views.Index'),
+	(r'^redir/url/(?P<url>.*)','search.views.redirect'),
 	(r'^search/api/books/q=(?P<query>.*)','booksapi.views.searchAPI'),
-	(r'^(.*)','booksearch.views.Index'),
+	(r'^(.*)','main.views.Index'),
   	
 	#(r'^$','hello.index'),
 	

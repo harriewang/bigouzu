@@ -112,6 +112,7 @@ INSTALLED_APPS = (
     'taobao',
     'dangdang',
     'joyo',
+    'taobaoapi2',
 )
 
 

@@ -69,7 +69,7 @@ class bigouzuPager(object):
 	def __init__(self,total_count, page_size, page):
 		self.datas = {}
 		if(total_count > page_size):
-			total_page = math.ceil( total_count / page_size )
+			total_page = int(math.ceil( total_count / page_size ))
 			#-对页码进行规范运算-#
 			if page < 1:
 				page = 1
@@ -91,4 +91,4 @@ class bigouzuPager(object):
 				self.datas['next_page'] = (page + 1)
 			self.datas['last_page'] = total_page                                  # 最后一页
 			self.datas['current_page'] = page                                   # 当前页
-			self.datas['all_pages'] = [i for i in range(1,total_page)]
+			#self.datas['all_pages'] = [i for i in range(1,total_page)]

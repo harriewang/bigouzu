@@ -77,6 +77,11 @@
 		</script>
 	</div>
 	<div id="view_sort">&nbsp;</div>
+	<div class="page_bar">
+		<a href="/search.html?query={{query}}&page={{ pager.prev_page }}">&lt;&lt; 上一页 </a>
+		&nbsp;{{ pager.current_page }}/{{ pager.total_page }}&nbsp;
+		<a href="/search.html?query={{query}}&page={{ pager.next_page }}">&lt;&lt; 下一页 </a>
+	</div>
 	<div id="results">
 		<ol>
 			{% for item in taoitems %}
@@ -166,7 +171,6 @@
 		<a href="/search.html?query={{query}}&page={{ pager.prev_page }}">&lt;&lt; 上一页 </a>
 		&nbsp;{{ pager.current_page }}/{{ pager.total_page }}&nbsp;
 		<a href="/search.html?query={{query}}&page={{ pager.next_page }}">&lt;&lt; 下一页 </a>
-		{{pager}}
 	</div>
 </div>
 {% endblock %}

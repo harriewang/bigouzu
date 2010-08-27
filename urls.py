@@ -21,12 +21,13 @@ urlpatterns = patterns('',
 	(r'^bookcatch/bookdetail_siteid=(?P<siteId>\d+)&subid=(?P<id>\d+)','books.dangdang.bookList'),
 	(r'^bookcatch/amazon_categorycatch_siteid=(?P<id>\d+)/$','books.amazon.categoryCatch'),
 	(r'^bookcatch/amazon_detailcatch_siteid=(?P<id>\d+)/$','books.amazon.bookDetailCatch'),
-	(r'^search.html','search.views.Index'),
-	(r'^redir/url/(?P<url>.*)','search.views.redirect'),
+	(r'^search.html','search.views.index'),
+	(r'^redir.html','main.views.redirect'),
 	(r'^search/api/books/q=(?P<query>.*)','booksapi.views.searchAPI'),
-	(r'^(.*)','main.views.Index'),
+	(r'^search/','search.views.index'),
+	(r'^$','main.views.index'),
+	#(r'^(.*)','main.views.mainIndex'),
   	
-	#(r'^$','hello.index'),
 	
     # Example:
     # (r'^byb/', include('byb.foo.urls')),

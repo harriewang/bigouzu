@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block head-title %}搜索{{query}}的结果 - 比购族{% endblock %}
+{% block head-title %}{{query}} - 比购族{% endblock %}
 {% block head-link %}
 <link rel="stylesheet" href="/media/css/result.css" media="screen" type="text/css" />
 {% endblock %}
@@ -131,14 +131,14 @@
 						</div>
 						<div class="result-button">
 							{%ifequal book.state "1" %}
-							<a href="{{book.buyUrl}}"><img src="/media/img/goumai.png"/></a><br><a href="{{book.deliverInfo}}" target="_blank">查看配送详情</a></td>
+							<a href="{%ifequal book.siteName '当当'%}http://union.dangdang.com/transfer/transfer.aspx?from=P-128640&backurl={%endifequal%}{{book.buyUrl}}{%ifequal book.siteName '亚马逊卓越'%}&source=harrie{%endifequal%}{%ifequal book.siteName '卓越'%}&source=harrie{%endifequal%}" target="_blank"><img src="/media/img/goumai.png"/></a><br><a href="{{book.deliverInfo}}" target="_blank">查看配送详情</a></td>
 							{% else %}
 							<a href="{{book.buyUrl}}"><img src="/media/img/quehuo.png"/></a></td>
 							{%endifequal%}
 						</div>
 					</div>
 					<div class="result-title-description">
-						<h3 class="result-title"><a target="_blank" href="{{book.buyUrl}}"><b>{{ book.title }}</b></a></h3>
+						<h3 class="result-title"><a target="_blank" href="{%ifequal book.siteName '当当'%}http://union.dangdang.com/transfer/transfer.aspx?from=P-128640&backurl={%endifequal%}{{book.buyUrl}}{%ifequal book.siteName '亚马逊卓越'%}&source=harrie{%endifequal%}{%ifequal book.siteName '卓越'%}&source=harrie{%endifequal%}"><b>{{ book.title }}</b></a></h3>
 						<p class="result-attributes"></p>
 						<p class="result-pop"></p>
 						<p class="result-desc">{{book.youhui}}<br/>原价：{{book.oprice}}</p>
@@ -161,6 +161,12 @@
 		<script type="text/javascript"
 		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		</script>
+	</div>
+	<div class="page_bar">
+		<a href="/search.html?query={{query}}&page={{ pager.prev_page }}">&lt;&lt; 上一页 </a>
+		&nbsp;{{ pager.current_page }}/{{ pager.total_page }}&nbsp;
+		<a href="/search.html?query={{query}}&page={{ pager.next_page }}">&lt;&lt; 下一页 </a>
+		{{pager}}
 	</div>
 </div>
 {% endblock %}

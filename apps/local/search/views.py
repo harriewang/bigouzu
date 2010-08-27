@@ -54,7 +54,7 @@ def index(request):
 	
 	num = itemsget.total_results
 	#--分页数据--#
-	#pager = bigouzuPager(itemsget.total_results,page_size,page)
+	pager = bigouzuPager(itemsget.total_results,page_size,page)
 	#--保存搜索日志--#
 	keyword=query.encode('utf-8')
 	ip=request.META['REMOTE_ADDR']
@@ -62,12 +62,12 @@ def index(request):
 	s=SearchLog(keyword=keyword,ip=ip,sessionID=sessionID)
 	s.save()
 	
-	context={'books':books,'query':keyword,'num':num,'taoitems':taoitems}
+	context={'books':books,'query':keyword,'num':num,'taoitems':taoitems,'pager':pager.datas}
 	return render_to_response('search/result.html',context)
 
 class bigouzuPager(object):
 	def __init__(self,total_count, page_size, page):
-		self.datas = ''
+		self.datas = {}
 		if(total_count > page_size):
 			total_page = math.ceil( total_count / page_size )
 			#-对页码进行规范运算-#
@@ -75,21 +75,20 @@ class bigouzuPager(object):
 				page = 1
 			if page > total_count:
 				page = total_count
-			self.datas.total_count = total_count                                 # 总记录数
-			self.datas.page_size = page_size                                 # 分页大小
-			self.datas.total_page = total_page                                  # 总页数
-			self.datas.first_page  = 1 # 第一页
+			self.datas['total_count'] = total_count                                 # 总记录数
+			self.datas['page_size'] = page_size                                 # 分页大小
+			self.datas['total_page'] = total_page                                  # 总页数
+			self.datas['first_page']  = 1 # 第一页
 			#上一页
 			if page == 1:
-				self.datas.prev_page = 1
+				self.datas['prev_page'] = 1
 			else:
-				self.datas.prev_page = (page - 1)
+				self.datas['prev_page'] = (page - 1)
 			#下一页
 			if  ( page == total_page ) :
-				self.datas.next_page = total_page
+				self.datas['next_page'] = total_page
 			else:
-				self.datas.next_page = (page + 1)
-			self.datas.last_page = total_page                                  # 最后一页
-			self.datas.current_page = page                                   # 当前页
-			self.datas.aaa = 'aaaa'
-			#self.datas.all_pages = [i for i in range(1,total_page)]
+				self.datas['next_page'] = (page + 1)
+			self.datas['last_page'] = total_page                                  # 最后一页
+			self.datas['current_page'] = page                                   # 当前页
+			self.datas['all_pages'] = [i for i in range(1,total_page)]

@@ -62,115 +62,112 @@
 		</script>
 	</div>
 </div>
-<div class="content-cont">
-	<div class="ads_top">
-		<script type="text/javascript"><!--
-		google_ad_client = "pub-5839758067615533";
-		/* bigouzu top 728x90, created 7/26/10 */
-		google_ad_slot = "8070519440";
-		google_ad_width = 728;
-		google_ad_height = 90;
-		//-->
-		</script>
-		<script type="text/javascript"
-		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-		</script>
-	</div>
-	<div id="view_sort">&nbsp;</div>
-	<div class="page_bar">
-		<a href="/search.html?query={{query}}&page={{ pager.prev_page }}">&lt;&lt; 上一页 </a>
-		&nbsp;{{ pager.current_page }}/{{ pager.total_page }}&nbsp;
-		<a href="/search.html?query={{query}}&page={{ pager.next_page }}">&lt;&lt; 下一页 </a>
-	</div>
-	<div id="results">
-		<ol>
-			{% for item in taoitems %}
-			<li class="result">
-				<div class="result-cont">
-					<p class="result-image"><img src="{{item.pic_url}}" width=100 height=100 /></p>
-					<div class="result-price-seller">
-						<p class="result-price">
-						<span class="result-price-range">
-						{{item.price}}
-						</span>
-						</p>
-						<div class="result-seller">
-						<cite class="hidden">
-							<a href="{{book.siteUrl}}">{{book.siteName}}</a>
-							<a href="{{book.siteUrl}}"><img src="{{book.siteLogo}}"/></a>
-						</cite>
+<div class="list col_main">
+	<div class="content-cont">
+		<div class="ads_top">
+			<script type="text/javascript"><!--
+			google_ad_client = "pub-5839758067615533";
+			/* bigouzu top 728x90, created 7/26/10 */
+			google_ad_slot = "8070519440";
+			google_ad_width = 728;
+			google_ad_height = 90;
+			//-->
+			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+		</div>
+		<div id="view_sort">&nbsp;</div>
+		<div id="results">
+			<ol>
+				{% for item in taoitems %}
+				<li class="result">
+					<div class="result-cont">
+						<p class="result-image"><img src="{{item.pic_url}}" width=100 height=100 /></p>
+						<div class="result-price-seller">
+							<p class="result-price">
+							<span class="result-price-range">
+							{{item.price}}
+							</span>
+							</p>
+							<div class="result-seller">
+							<cite class="hidden">
+								<a href="{{book.siteUrl}}">{{book.siteName}}</a>
+								<a href="{{book.siteUrl}}"><img src="{{book.siteLogo}}"/></a>
+							</cite>
+							</div>
+							<div class="result-button">
+								{%if item.price %}
+								<a href="http://item.taobao.com/auction/item_detail-0db2-{{item.iid}}.jhtml" target="_blank"><img src="/media/img/goumai.png"/></a><br><a href="http://item.taobao.com/auction/item_detail-0db2-{{item.iid}}.jhtml" target="_blank" style="display:none;">查看配送详情</a></td>
+								{% else %}
+								<a href="{{book.buyUrl}}"><img src="/media/img/quehuo.png"/></a></td>
+								{%endif%}
+							</div>
 						</div>
-						<div class="result-button">
-							{%if item.price %}
-							<a href="http://item.taobao.com/auction/item_detail-0db2-{{item.iid}}.jhtml" target="_blank"><img src="/media/img/goumai.png"/></a><br><a href="http://item.taobao.com/auction/item_detail-0db2-{{item.iid}}.jhtml" target="_blank" style="display:none;">查看配送详情</a></td>
-							{% else %}
-							<a href="{{book.buyUrl}}"><img src="/media/img/quehuo.png"/></a></td>
-							{%endif%}
-						</div>
-					</div>
-					<div class="result-title-description">
-						<h3 class="result-title"><a target="_blank" href="http://item.taobao.com/auction/item_detail-0db2-{{item.iid}}.jhtml"><b>{{ item.title|safe }}</b></a></h3>
-						<p class="result-attributes"></p>
-						<p class="result-pop"></p>
-						<p class="result-desc">{{book.youhui}}<br/>原价：{{item.price}}</p>
-						<div class="result-rating"></div>
-					</div>
-				</div>
-			</li>
-			{% endfor %}
-			{% for book in books %}
-			<li class="result">
-				<div class="result-cont">
-					<p class="result-image"><img src="{{book.imgUrl}}" width=100 height=100 /></p>
-					<div class="result-price-seller">
-						<p class="result-price">
-						<span class="result-price-range">
-						{{book.price}}
-						</span>
-						</p>
-						<div class="result-seller">
-						<cite class="hidden">
-							<a href="{{book.siteUrl}}">{{book.siteName}}</a>
-							<a href="{{book.siteUrl}}"><img src="{{book.siteLogo}}"/></a>
-						</cite>
-						</div>
-						<div class="result-button">
-							{%ifequal book.state "1" %}
-							<a href="{%ifequal book.siteName '当当'%}http://union.dangdang.com/transfer/transfer.aspx?from=P-128640&backurl={%endifequal%}{{book.buyUrl}}{%ifequal book.siteName '亚马逊卓越'%}&source=harrie{%endifequal%}{%ifequal book.siteName '卓越'%}&source=harrie{%endifequal%}" target="_blank"><img src="/media/img/goumai.png"/></a><br><a href="{{book.deliverInfo}}" target="_blank">查看配送详情</a></td>
-							{% else %}
-							<a href="{{book.buyUrl}}"><img src="/media/img/quehuo.png"/></a></td>
-							{%endifequal%}
+						<div class="result-title-description">
+							<h3 class="result-title"><a target="_blank" href="http://item.taobao.com/auction/item_detail-0db2-{{item.iid}}.jhtml"><b>{{ item.title|safe }}</a></h3>
+							<p class="result-attributes"></p>
+							<p class="result-pop"></p>
+							<p class="result-desc">{{book.youhui}}<br/>原价：{{item.price}}</p>
+							<div class="result-rating"></div>
 						</div>
 					</div>
-					<div class="result-title-description">
-						<h3 class="result-title"><a target="_blank" href="{%ifequal book.siteName '当当'%}http://union.dangdang.com/transfer/transfer.aspx?from=P-128640&backurl={%endifequal%}{{book.buyUrl}}{%ifequal book.siteName '亚马逊卓越'%}&source=harrie{%endifequal%}{%ifequal book.siteName '卓越'%}&source=harrie{%endifequal%}"><b>{{ book.title }}</b></a></h3>
-						<p class="result-attributes"></p>
-						<p class="result-pop"></p>
-						<p class="result-desc">{{book.youhui}}<br/>原价：{{book.oprice}}</p>
-						<div class="result-rating"></div>
+				</li>
+				{% endfor %}
+				{% for book in books %}
+				<li class="result">
+					<div class="result-cont">
+						<p class="result-image"><img src="{{book.imgUrl}}" width=100 height=100 /></p>
+						<div class="result-price-seller">
+							<p class="result-price">
+							<span class="result-price-range">
+							{{book.price}}
+							</span>
+							</p>
+							<div class="result-seller">
+							<cite class="hidden">
+								<a href="{{book.siteUrl}}">{{book.siteName}}</a>
+								<a href="{{book.siteUrl}}"><img src="{{book.siteLogo}}"/></a>
+							</cite>
+							</div>
+							<div class="result-button">
+								{%ifequal book.state "1" %}
+								<a href="{%ifequal book.siteName '当当'%}http://union.dangdang.com/transfer/transfer.aspx?from=P-128640&backurl={%endifequal%}{{book.buyUrl}}{%ifequal book.siteName '亚马逊卓越'%}&source=harrie{%endifequal%}{%ifequal book.siteName '卓越'%}&source=harrie{%endifequal%}" target="_blank"><img src="/media/img/goumai.png"/></a><br><a href="{{book.deliverInfo}}" target="_blank">查看配送详情</a></td>
+								{% else %}
+								<a href="{{book.buyUrl}}"><img src="/media/img/quehuo.png"/></a></td>
+								{%endifequal%}
+							</div>
+						</div>
+						<div class="result-title-description">
+							<h3 class="result-title"><a target="_blank" href="{%ifequal book.siteName '当当'%}http://union.dangdang.com/transfer/transfer.aspx?from=P-128640&backurl={%endifequal%}{{book.buyUrl}}{%ifequal book.siteName '亚马逊卓越'%}&source=harrie{%endifequal%}{%ifequal book.siteName '卓越'%}&source=harrie{%endifequal%}"><b>{{ book.title }}</a></h3>
+							<p class="result-attributes"></p>
+							<p class="result-pop"></p>
+							<p class="result-desc">{{book.youhui}}<br/>原价：{{book.oprice}}</p>
+							<div class="result-rating"></div>
+						</div>
 					</div>
-				</div>
-			</li>
-			{% endfor %}
-		</ol>
-	</div>
-	<div class="ads_bot">
-		<script type="text/javascript"><!--
-		google_ad_client = "pub-5839758067615533";
-		/* bigouzu bottom728x90, created 7/26/10 */
-		google_ad_slot = "1405280049";
-		google_ad_width = 728;
-		google_ad_height = 90;
-		//-->
-		</script>
-		<script type="text/javascript"
-		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-		</script>
-	</div>
-	<div class="page_bar">
-		<a href="/search.html?query={{query}}&page={{ pager.prev_page }}">&lt;&lt; 上一页 </a>
-		&nbsp;{{ pager.current_page }}/{{ pager.total_page }}&nbsp;
-		<a href="/search.html?query={{query}}&page={{ pager.next_page }}">&lt;&lt; 下一页 </a>
+				</li>
+				{% endfor %}
+			</ol>
+		</div>
+		<div class="ads_bot">
+			<script type="text/javascript"><!--
+			google_ad_client = "pub-5839758067615533";
+			/* bigouzu bottom728x90, created 7/26/10 */
+			google_ad_slot = "1405280049";
+			google_ad_width = 728;
+			google_ad_height = 90;
+			//-->
+			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+		</div>
+		<div class="page_bar">
+			<a href="/search.html?query={{query}}&page={{ pager.prev_page }}">&lt;&lt; 上一页 </a>
+			&nbsp;{{ pager.current_page }}/{{ pager.total_page }}&nbsp;
+			<a href="/search.html?query={{query}}&page={{ pager.next_page }}"> 下一页 &gt;&gt;</a>
+		</div>
 	</div>
 </div>
 {% endblock %}

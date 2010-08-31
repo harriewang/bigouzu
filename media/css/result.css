@@ -108,7 +108,7 @@ position:absolute;
 	border:0 none;
 	padding:0 4px;
 	width:143px;
-	float:left;
+	left:8px;
 	line-height:120%;
 	background:none repeat scroll 0 0 #FFFFFF;
 	border-right:1px solid #C9D7F1;
@@ -147,7 +147,7 @@ font-size:139%;
 .result-title {
 padding-bottom:2px;
 }
-.content-cont{margin-left:151px;
+.content-cont{
 border-left:1px solid #D3E1F9;
 padding-left:8px;
 }
@@ -173,3 +173,12 @@ color:white;
 margin-top:-1px;
 }
 #advsearch{display:none;}
+.col_main {
+margin-left:151px;
+}
+.list {
+max-width:70em;
+}
+.list .result-title {
+font-size:123%;
+}
